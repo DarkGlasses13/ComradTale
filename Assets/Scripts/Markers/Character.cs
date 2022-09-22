@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Markers
+namespace Scripts.Markers
 {
     public class Character : MonoBehaviour { }
 }
