@@ -1,1 +1,74 @@
-{}
+{
+    "name": "ControlsEditor",
+    "maps": [
+        {
+            "name": "Test",
+            "id": "60cc16b5-d25c-4a82-9089-78bf4be44560",
+            "actions": [
+                {
+                    "name": "ButtonTest",
+                    "type": "Button",
+                    "id": "d0d633ea-4852-4e5b-891c-ab926aac1dc4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "JoystickTest",
+                    "type": "Value",
+                    "id": "6b14f57f-39e0-46d6-8dcf-185cd0d686dc",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Joystick2",
+                    "type": "Value",
+                    "id": "c9264d98-7b01-4a14-8c83-b29632d3847c",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c958456c-46be-4d21-901d-cb855125d47e",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ButtonTest",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c6216bab-f622-481a-84cb-2ebce738abd5",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JoystickTest",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2f4ba525-f2ae-4cb6-99a9-a890451c340f",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Joystick2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
