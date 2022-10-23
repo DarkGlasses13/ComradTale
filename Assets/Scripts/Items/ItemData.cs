@@ -1,18 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
 
-namespace Scripts.Items
+namespace Items
 {
-    public abstract class ItemData : ScriptableObject
+    [Serializable]
+    public class ItemData
     {
-        [SerializeField] private string _title;
-        [SerializeField, TextArea(5, 100)] private string _description;
-        [SerializeField] private int _price;
-        [SerializeField] private Mesh _mesh;
-
-        public abstract ItemTypes Type { get; }
-        public Mesh Mesh => _mesh;
-        public string Title => _title;
-        public string Description => _description;
-        public int Price => _price;
+        public int Id { get; private set; }
+        public string Title { get; private set; }
+        public string Description { get; private set; }
+        public int Price { get; private set; }
     }
 }
