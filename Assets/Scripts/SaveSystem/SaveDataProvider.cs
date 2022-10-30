@@ -15,8 +15,8 @@ namespace SaveSystem
             GameData = (GameData)_storage.Load(defaultGameData);
             Controls controls = new();
             controls.Enable();
-            controls.Storage.Save.performed += callbackContext => _storage.Save(GameData);
-            controls.Storage.Load.performed += callbackContext => _storage.Load(defaultGameData);
+            //controls.Storage.Save.performed += callbackContext => _storage.Save(GameData);
+            //controls.Storage.Load.performed += callbackContext => _storage.Load(defaultGameData);
             Application.quitting += () => _storage.Save(GameData);
         }
     }
