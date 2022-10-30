@@ -24,9 +24,79 @@ namespace Input
         {
             asset = InputActionAsset.FromJson(@"{
     ""name"": ""Controls"",
-    ""maps"": [],
-    ""controlSchemes"": []
+    ""maps"": [
+        {
+            ""name"": ""Storage"",
+            ""id"": ""47a58550-e30c-4fef-8990-099fe739364d"",
+            ""actions"": [
+                {
+                    ""name"": ""Save"",
+                    ""type"": ""Button"",
+                    ""id"": ""aed36df4-3868-499b-881c-8d576724f758"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Load"",
+                    ""type"": ""Button"",
+                    ""id"": ""9a0088f9-1a78-4726-809d-4f29df72bcad"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""09d15c9e-5d8f-49b4-8145-4adb14354129"",
+                    ""path"": ""<Keyboard>/f5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MouseKeyboard"",
+                    ""action"": ""Save"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""574583d8-98a2-4a29-a65c-c7087c90a2cd"",
+                    ""path"": ""<Keyboard>/f9"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MouseKeyboard"",
+                    ""action"": ""Load"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        }
+    ],
+    ""controlSchemes"": [
+        {
+            ""name"": ""MouseKeyboard"",
+            ""bindingGroup"": ""MouseKeyboard"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
+            // Storage
+            m_Storage = asset.FindActionMap("Storage", throwIfNotFound: true);
+            m_Storage_Save = m_Storage.FindAction("Save", throwIfNotFound: true);
+            m_Storage_Load = m_Storage.FindAction("Load", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -81,6 +151,61 @@ namespace Input
         public int FindBinding(InputBinding bindingMask, out InputAction action)
         {
             return asset.FindBinding(bindingMask, out action);
+        }
+
+        // Storage
+        private readonly InputActionMap m_Storage;
+        private IStorageActions m_StorageActionsCallbackInterface;
+        private readonly InputAction m_Storage_Save;
+        private readonly InputAction m_Storage_Load;
+        public struct StorageActions
+        {
+            private @Controls m_Wrapper;
+            public StorageActions(@Controls wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Save => m_Wrapper.m_Storage_Save;
+            public InputAction @Load => m_Wrapper.m_Storage_Load;
+            public InputActionMap Get() { return m_Wrapper.m_Storage; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(StorageActions set) { return set.Get(); }
+            public void SetCallbacks(IStorageActions instance)
+            {
+                if (m_Wrapper.m_StorageActionsCallbackInterface != null)
+                {
+                    @Save.started -= m_Wrapper.m_StorageActionsCallbackInterface.OnSave;
+                    @Save.performed -= m_Wrapper.m_StorageActionsCallbackInterface.OnSave;
+                    @Save.canceled -= m_Wrapper.m_StorageActionsCallbackInterface.OnSave;
+                    @Load.started -= m_Wrapper.m_StorageActionsCallbackInterface.OnLoad;
+                    @Load.performed -= m_Wrapper.m_StorageActionsCallbackInterface.OnLoad;
+                    @Load.canceled -= m_Wrapper.m_StorageActionsCallbackInterface.OnLoad;
+                }
+                m_Wrapper.m_StorageActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @Save.started += instance.OnSave;
+                    @Save.performed += instance.OnSave;
+                    @Save.canceled += instance.OnSave;
+                    @Load.started += instance.OnLoad;
+                    @Load.performed += instance.OnLoad;
+                    @Load.canceled += instance.OnLoad;
+                }
+            }
+        }
+        public StorageActions @Storage => new StorageActions(this);
+        private int m_MouseKeyboardSchemeIndex = -1;
+        public InputControlScheme MouseKeyboardScheme
+        {
+            get
+            {
+                if (m_MouseKeyboardSchemeIndex == -1) m_MouseKeyboardSchemeIndex = asset.FindControlSchemeIndex("MouseKeyboard");
+                return asset.controlSchemes[m_MouseKeyboardSchemeIndex];
+            }
+        }
+        public interface IStorageActions
+        {
+            void OnSave(InputAction.CallbackContext context);
+            void OnLoad(InputAction.CallbackContext context);
         }
     }
 }
