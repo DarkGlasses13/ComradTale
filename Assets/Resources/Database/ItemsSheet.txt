@@ -1,4 +1,0 @@
-Title,Description,Price,Stack
-Roten apple,,1,99
-Plastic bottle,,10,99
-Rusty nail,,2,999

@@ -1,0 +1,70 @@
+[
+  {
+    "Name": "Hat with ear flaps",
+    "Description": "Cliche...",
+    "Price": 1000,
+    "Stack": 1,
+    "Stats": [
+      {
+        "Title": "Protection",
+        "Value": 10
+      }
+    ]
+  },
+  {
+    "Name": "Stale bread",
+    "Description": "Harder than stone",
+    "Price": 5,
+    "Stack": 99,
+    "Stats": [
+      {
+        "Title": "Restoration",
+        "Value": 5
+      }
+    ]
+  },
+  {
+    "Name": "Rusty nail",
+    "Description": "-",
+    "Price": 1,
+    "Stack": 99
+  },
+  {
+    "Name": "Rotten apple",
+    "Description": "-",
+    "Price": 2,
+    "Stack": 99,
+    "Stats": [
+      {
+        "Title": "Restoration",
+        "Value": 2
+      }
+    ]
+  },
+  {
+    "Name": "Plastic bottle",
+    "Description": "-",
+    "Price": 5,
+    "Stack": 99
+  },
+  {
+    "Name": "Pistol",
+    "Description": "-",
+    "Price": 5000,
+    "Stack": 1,
+    "Stats": [
+      {
+        "Title": "Damage",
+        "Value": 25
+      },
+      {
+        "Title": "AttackRate",
+        "Value": 25
+      },
+      {
+        "Title": "Distance",
+        "Value": 10
+      }
+    ]
+  }
+]
